@@ -9,7 +9,7 @@
 ## 20-bit ALU (Minimized)
 ![alt text](24D9A279-C3A6-4810-B3AB-E3D5912A9B7E_1_201_a.jpeg)
 
-## 20-bit ALU
+## 20-bit ALU using 1-bit ALU
 ![alt text](6EAC0520-34F3-4B04-804A-8FA8E0477056_1_105_c.jpeg)
 
 ## Control Unit
