@@ -15,7 +15,7 @@
 ## Control Unit
 ![alt text](52FDDF86-2F17-4B5A-937B-E673C79EF274_1_201_a.jpeg)
 
-## ALU Control 
+## ALU Control
 ![alt text](8941C2BB-6876-4966-959D-F0375FDEE7F3_1_105_c.jpeg)
 
 ## 20-bit Single Cycle Datapath
