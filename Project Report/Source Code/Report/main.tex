@@ -1,0 +1,343 @@
+\documentclass[12pt, onecolumn]{report}
+\usepackage[a4paper,margin=2.50cm]{geometry}
+\usepackage{fancyhdr}
+%\usepackage[T1]{fontenc}
+% \usepackage{mathptmx}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{amssymb}
+\DisableLigatures[>,<]{encoding = T1,family=tt*}
+\usepackage{tabularx,booktabs}
+\usepackage{graphicx}
+\usepackage{caption}
+\graphicspath{ {./Images/} }
+\pagestyle{empty}
+\pagenumbering{gobble}
+
+
+\title{CSE332 Project}
+\author{Group 11}
+\date{11 December, 2024}
+
+\begin{document}
+
+\maketitle
+
+\hfill
+
+\begin{center}
+  \title{\LARGE Table of Control Unit \& ALU control}  
+\end{center}
+
+\section*{1. ALU Control Table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Instruction} & & \textbf{Instruction} & \textbf{Function} & \textbf{Desired} & \textbf{ALU} \\
+
+\textbf{Opcode} & \textbf{ALUOp}  & \textbf{Operation} & \textbf{Field} & \textbf{ALU Action} & \textbf{Control}\\
+&  & &  & & \textbf{Input}\\
+\hline
+000 & 10 & SLL & 000 & Shift Left Logical & 000 \\\hline
+000 & 10 & SLT & 001 & Set Less Than & 001 \\\hline
+001 & 00 & SW & xxx & Add & 011 \\\hline
+000 & 10 & SRL & 010 & Shift Right Logical & 010 \\\hline
+010 & 01 & BNE & xxx & Subtract & 111 \\\hline
+000 & 10 & ADD & 011 & Add & 011 \\\hline
+000 & 10 & OR & 100 & Bitwise OR & 100 \\\hline
+011 & 01 & BEQ & xxx & Subtract & 110 \\\hline
+000 & 10 & NOR & 101 & Bitwise NOR & 101 \\\hline
+100 & 00 & NOP & xxx & Shift Logical Left & 000 \\\hline
+101 & 00 & ADDi & xxx & Add & 011 \\\hline
+110 & 00 & LW & xxx & Add & 011 \\\hline
+000 & 10 & AND & 110 & Bitwise AND & 110 \\\hline
+111 & 00 & JMP & xxx & No ALU Action & xxx \\\hline
+000 & 10 & SUB & 111 & Subtract & 111 \\
+\hline
+\end{tabular}
+\end{table}
+\hfill
+
+
+\section*{2. Control Unit Signal Table}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Instr.} & \textbf{Reg} & \textbf{ALU} & \textbf{Mem} & \textbf{Reg} & \textbf{Mem} & \textbf{Mem} & \textbf{Bra-} & \textbf{Jump} & \textbf{ALU} & \textbf{ALU} \\
+\textbf{uctio}n& \textbf{Dst} & \textbf{Src} & \textbf{Reg} & \textbf{Write} & \textbf{Read} & \textbf{Write} & \textbf{nch}&  & \textbf{Op1} & \textbf{Op0} \\
+\hline
+LW & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\\hline
+SW & X & 1 & X & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\\hline
+ADDi & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\\hline
+BEQ & X & 0 & X & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\\hline
+BNE & X & 0 & X & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\\hline
+R-Type & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 \\\hline
+NOP & X & X & X & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\\hline
+JMP & X & X & X & 0 & 0 & 0 & 0 & 1 & X & X \\\hline
+\end{tabular}
+\end{table}
+\newpage
+
+\section*{3. ALU Control Truth Table}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{ALUOp1} & \textbf{ALUOp0} & \textbf{Funct2} & \textbf{Funct1} & \textbf{Funct0} & \textbf{O2} & \textbf{O1} & \textbf{O0} \\
+\hline
+0 & 0 & x & x & x & 0 & 1 & 1 \\ \hline
+0 & 1 & x & x & x & 1 & 1 & 1 \\ \hline
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\ \hline
+1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 \\ \hline
+1 & 0 & 0 & 1 & 1 & 0 & 1 & 1 \\ \hline
+1 & 0 & 1 & 0 & 1 & 1 & 0 & 0 \\ \hline
+1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 \\ \hline
+1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\ \hline
+1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+\begin{center}
+  \title{\LARGE Instruction Set Achitecture}  
+\end{center}
+\subsection*{R-Type}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+[19:17] & [16:13] & [12:9] & [8:5] & [4:3] & [2:0] \\
+\hline
+\textbf{op}(3-bit) & \textbf{rs}(4-bit) & \textbf{rt}(4-bit) & \textbf{rd}(4-bit) & \textbf{shamt}(2-bit) & \textbf{funct}(3-bit) \\
+
+\hline
+\end{tabular}
+\end{table}
+
+\subsection*{I-Type}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+[19:17] & [16:13] & [12:9] & [8:0] \\
+\hline
+\textbf{op}(3-bit) & \textbf{rs}(3-bit) & \textbf{rd}(3-bit) & \hspace{1.7cm}\textbf{immediate(3-bit)} \hspace{1.7cm} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection*{J-Type}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+[19:17] & [16:0] \\
+\hline
+\textbf{op}(3-bit) & \hspace{3.25cm}\textbf{target address}(17-bit)\hspace{3.25cm} \\
+\hline
+\end{tabular}
+\end{table}
+\hfill
+
+
+\section*{1. Number of Operands}
+
+\subsection*{R-type instructions}
+The R-type instructions in the instruction set architecture employ three distinct operands, consisting of
+\begin{itemize}
+    \item Two source registers (rs and rt) 
+    \item One destination register (rd)
+\end{itemize}
+
+\subsection*{I-type instructions }
+The I-type instructions utilize two operands, where one is consistently
+
+\begin{itemize}
+    \item One source register (rs) and
+    \item 9-bit immediate value or a destination register (rd)
+\end{itemize}
+
+\subsection*{J-type instructions}
+ The J-type instructions operate with a single operand.
+ \begin{itemize}
+    \item  17-bit target address
+\end{itemize}
+\textbf{Total Number of Operands:} 7
+\hfill
+
+
+
+\section*{2. Types of Operands}
+
+\subsection*{Register-Based Operands}
+\begin{itemize}
+    \item Used in R-Type instructions, where all operands (\textit{rs}, \textit{rt}, \textit{rd}) are registers.
+    \item Also used in I-Type instructions for arithmetic and logical operations (e.g., \textit{rs} and \textit{rd}).
+\end{itemize}
+
+\subsection*{Memory-Based Operands}
+\begin{itemize}
+    \item Found in I-Type instructions for \textit{load} (LW) and \textit{store} (SW) operations, where the \textit{immediate} field specifies an offset, and \textit{rs} points to a memory address.
+\end{itemize}
+
+\subsection*{Address-Based Operands}
+\begin{itemize}
+    \item Found in J-Type instructions, where the operand is a memory address used for branching or jumping.
+\end{itemize}
+\textbf{Types of Operands:} 3
+\hfill
+
+\section*{3. List of Operations}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Number} & \textbf{Operation} & \textbf{Description} & \textbf{Operation Format} \\
+\hline
+1 & SLL & Shift Left Logical & \$rd = \$rs << shamt \\
+\hline
+2 & SLT & Set Less Than & \$rd = (\$rs < \$rt) ? 1 : 0 \\
+\hline
+3 & SW & Store Word & Memory[\$rs + immediate] = \$rt \\
+\hline
+4 & SRL & Shift Right Logical & \$rd = \$rs >> shamt \\
+\hline
+5 & BNE & Branch if Not Equal & if (\$rs != \$rt) PC += immediate \\
+\hline
+6 & ADD & Addition & \$rd = \$rs + \$rt \\
+\hline
+7 & OR & Logical OR & \$rd = \$rs | \$rt \\
+\hline
+8 & BEQ & Branch if Equal & if (\$rs == \$rt) PC += immediate \\
+\hline
+9 & NOR & Logical NOR & $rd = ~(\$rs | \$rt) \\
+\hline
+10 & NOP & No Operation & No operation performed \\
+\hline
+11 & ADDi & Add Immediate & \$rd = \$rs + immediate \\
+\hline
+12 & LW & Load Word & $rd = Memory[$rs + immediate] \\
+\hline
+13 & AND & Logical AND & $rd = \$rs\& \$rt \\
+\hline
+14 & JMP & Jump & PC = target address \\
+\hline
+15 & SUB & Subtraction & \$rd = \$rs - \$rt \\
+\hline
+\end{tabular}
+\end{table}
+\hfill
+
+\newpage
+\section*{4. Types of Operations}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+
+\hline
+\textbf{Operation Type} & \textbf{Operation Name} & \textbf{Opcode} & \textbf{Function Bits} \\
+\hline
+\text{Arithmetic} & ADD & 000 & 000 \\\hline
+\text{Arithmetic} & ADDi & 101 & 101 \\\hline
+\text{Arithmetic} & SUB & 000 & 111 \\\hline
+\text{Logical} & AND & 000 & 110 \\\hline
+\text{Logical} & OR & 000 & 100 \\\hline
+\text{Logical} & NOR & 000 & 101 \\\hline
+\text{Logical} & SLL & 000 & 000 \\\hline
+\text{Logical} & SRL & 000 & 010 \\\hline
+\text{Logical} & SLT & 000 & 001 \\\hline
+\text{Logical} & NOP & 100 & xxx \\\hline
+\text{Branch} & BEQ & 011 & xxx \\\hline
+\text{Branch} & BNE & 010 & xxx \\\hline
+\text{Branch} & JMP & 111 & xxx \\\hline
+\text{Memory} & LW & 110 & xxx \\\hline
+\text{Memory} & SW & 001 & xxx \\\hline
+\end{tabular}
+\end{table}
+
+\subsection*{Summary of Operations}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Operation} & \textbf{Count} \\
+\hline
+\text{Arithmetic} & 3 \\\hline
+\text{Logical} & 7 \\\hline
+\text{Branch} & 3 \\\hline
+\text{Memory} & 2 \\\hline
+\end{tabular}
+\end{table}
+
+
+\hfill
+\section*{5. Number of Instruction Formats}
+
+There are total 3 types of Instructions Formats used in the Instruction Set Architecture.
+\begin{itemize}
+    \item R-Type 
+    \item I-Type
+    \item J-Type
+\end{itemize}
+
+
+
+\hfill
+\section*{6. Instruction Format Description}
+
+\subsection*{R-Type (Register-Type)}
+\begin{itemize}
+    \item \textbf{Purpose:} Used for arithmetic and logical operations.
+    \item \textbf{Field Description:}
+    \begin{itemize}
+        \item \textit{op} (3-bit): Operation code.
+        \item \textit{rs} (4-bit): Source register 1.
+        \item \textit{rt} (4-bit): Source register 2.
+        \item \textit{rd} (4-bit): Destination register.
+        \item \textit{shamt} (2-bit): Shift amount (used in shift operations).
+        \item \textit{funct} (3-bit): Function code to specify the exact operation.
+    \end{itemize}
+    \item \textbf{Field Lengths:} Total: 20 bits.
+\end{itemize}
+
+\subsection*{I-Type (Immediate-Type)}
+\begin{itemize}
+    \item \textbf{Purpose:} Used for immediate value operations, memory access, and branching.
+    \item \textbf{Field Description:}
+    \begin{itemize}
+        \item \textit{op} (3-bit): Operation code.
+        \item \textit{rs} (4-bit): Source register.
+        \item \textit{rd} (4-bit): Destination register.
+        \item \textit{immediate} (9-bit): Immediate value or offset for memory.
+    \end{itemize}
+    \item \textbf{Field Lengths:} Total: 20 bits.
+\end{itemize}
+
+\subsection*{J-Type (Jump-Type)}
+\begin{itemize}
+    \item \textbf{Purpose:} Used for jump instructions.
+    \item \textbf{Field Description:}
+    \begin{itemize}
+        \item \textit{op} (3-bit): Operation code.
+        \item \textit{target address} (17-bit): Address for the jump.
+    \end{itemize}
+    \item \textbf{Field Lengths:} Total: 20 bits.
+\end{itemize}
+
+\end{document}
+
+
+
+
+
+
+
+
