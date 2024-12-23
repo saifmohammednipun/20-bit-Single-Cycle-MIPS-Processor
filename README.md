@@ -15,6 +15,8 @@ The final version of your ISA based on the operations assigned to you in the pdf
 5) No. of the format of instruction (how many different formats?)
 6) Describe each of the formats (fields and field length)
 
-**Note:**It is difficult and error-prone to write machine code manually. The problem can be addressed by writing an assembler, which can automatically generate a machine code from an assembly file. In this project,  you might write an assembler for your ISA. The assembler reads a program written using assembly language in a text file, then translates it into binary code and generates an output file(.txt) containing machine code. The generated output files will be useful to run a program when you develop your actual CPU. 
+**Note:**
+It is difficult and error-prone to write machine code manually. The problem can be addressed by writing an assembler, which can automatically generate a machine code from an assembly file. In this project,  you might write an assembler for your ISA. The assembler reads a program written using assembly language in a text file, then translates it into binary code and generates an output file(.txt) containing machine code. The generated output files will be useful to run a program when you develop your actual CPU. 
 
-**Language:**You can use any high-level language. A demo assembler created with Python is attached here for your reference. You are strongly advised to use them to save your time. You might need to modify the existing functions/classes according to your need.
+**Language:**
+You can use any high-level language. A demo assembler created with Python is attached here for your reference. You are strongly advised to use them to save your time. You might need to modify the existing functions/classes according to your need.
