@@ -1,0 +1,5 @@
+lw  $r3 $r0  10
+lw  $r4 $r0  15
+addi $r5 $r0  4
+sub $r7 $r3 $r4
+add $r8 $r7  Sr5
