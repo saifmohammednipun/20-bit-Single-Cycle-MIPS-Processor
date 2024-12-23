@@ -5,6 +5,7 @@ Here you will be implementing your own CPU based on the "Machine Code Bits" ment
 **Submission must include:**
 
 One logisim file containing the whole Complete Datapath. (register file design, ALU design, control unit and ALU control, instruction and data memory)
+
 **Project Report:**
 A document containing the table of Control Unit and ALU control.
 The final version of your ISA based on the operations assigned to you in the pdf in same order.  You should mention:
