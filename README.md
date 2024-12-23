@@ -1,4 +1,4 @@
-# 20-bit-Single-Cycle-CPU
+# Complete Datapath based on IAS with assigned bits and operations
 
 Here you will be implementing your own CPU based on the "Machine Code Bits" mentioned in the pdf file, submitted by individuals. The CPU must be able to execute the instructions stored in the memory one after another. Implement your datapath and control units properly so that your Datapath can execute instructions automatically. You have to submit the Complete Datapath based on IAS with your assigned bits  and operations.
 
