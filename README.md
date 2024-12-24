@@ -1,6 +1,6 @@
 # 20-bit MIPS SINGLE CYCLE CPU  DESIGN
 
-# Instruction Set Architecture
+## Instruction Set Architecture
 
 ### R-Type
 | [19:17]   | [16:13]   | [12:9]    | [8:5]     | [4:3]     | [2:0]     |
