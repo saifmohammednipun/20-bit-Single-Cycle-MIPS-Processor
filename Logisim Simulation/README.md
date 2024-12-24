@@ -1,4 +1,4 @@
-## Logsisim Simulation
+## Logisim Simulation
 
 ### Register File
 ![Register File](Screenshots/Register-File.jpeg)
@@ -20,5 +20,3 @@
 
 ### Single Cycle Datapath
 ![alt text](<Screenshots/Single Cycle Datapath.jpeg>)
-
-
