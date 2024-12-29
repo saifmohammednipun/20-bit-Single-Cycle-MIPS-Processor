@@ -1,4 +1,4 @@
-# 20-bit MIPS SINGLE CYCLE CPU  DESIGN
+# 20-bit SINGLE CYCLE MIPS PROCESSOR
 
 ## Instruction Set Architecture
 
@@ -12,7 +12,7 @@
 ### I-Type
 | [19:17]   | [16:13]   | [12:9]    | [8:0]                          |
 |-----------|-----------|-----------|---------------------------------|
-| **op** (3-bit) | **rs** (4-bit) | **rd** (4-bit) | **immediate** (9-bit)            |
+| **op** (3-bit) | **rs** (4-bit) | **rd** (4-bit) | **immediate** (9-bit)|
 
 ---
 
