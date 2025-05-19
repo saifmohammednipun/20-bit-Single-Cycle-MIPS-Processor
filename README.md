@@ -23,7 +23,7 @@ It is difficult and error-prone to write machine code manually. The problem can 
 You can use any high-level language. A demo assembler created with Python is attached here for your reference. You are strongly advised to use them to save your time. You might need to modify the existing functions/classes according to your need.
 
 
-## Assigned Instruction Set Architecture (ISA)
+## Instruction Set Architecture (ISA)
 
 ### R-Type
 | [19:17]   | [16:13]   | [12:9]    | [8:5]     | [4:3]     | [2:0]     |
